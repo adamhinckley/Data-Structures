@@ -5,6 +5,23 @@ class BinarySearchTree:
         self.right = None
 
     def insert(self, value):
+        # If value is greater than self.value and self.right is empty,
+        # self.right becomes the passed in value
+        if value > self.value and self.right is None:
+            self.right = BinarySearchTree(value)
+#
+        # if value is less than self.value and self.left is empty,
+        # self.left becomes the passed in value
+        if value < self.value and self.left is None:
+            self.left = BinarySearchTree(value)
+#
+        # if either self.left or self.right have an existing value,
+        # insert the passed in value based on if left or right is greater
+        if value > self.value:
+            self.right.insert(value)
+
+        if value < self.value:
+            self.left.insert(value)
 
     def contains(self, target):
         pass
