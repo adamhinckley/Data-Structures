@@ -33,9 +33,20 @@ class BinarySearchTree:
         # if target is greater than self.value; self.right contains the target
         elif target > self.value:
             return self.right.contains(target)
-        # if targer us less than self.value; self.left contains the target
+        # if target us less than self.value; self.left contains the target
         elif target < self.value:
             return self.left.contains(target)
 
     def get_max(self):
-        pass
+        maximum = 0
+        # check to see if anythin exists in self.right.
+        # if nothing is there, the passed in value is the max
+        # this also stops the function from being called recursively
+        if not self.right:
+            maximum = self.value
+        # while self.right contains an item(s)
+        # assign the biggest value to the max recursively
+        while self.right:
+            maximum = self.value
+            return self.right.get_max()
+        return maximum
