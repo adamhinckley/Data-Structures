@@ -112,15 +112,22 @@ class DoublyLinkedList:
             self.tail = node
 
     def delete(self, node):
-        pass
+        node.delete()
 
     def get_max(self):
+        print(self.head.value)
         if not self.head:
             return None
         node = self.head
         list_max = node.value
-        while node.next:
-            node = node.next
+        while node:
             if node.value > list_max:
                 list_max = node.value
+            node = node.next
         return list_max
+
+        """ check if a head exists
+            assign variable for max
+            loop over nodes
+            when the node is larger than max assign the value to max
+            return max"""
