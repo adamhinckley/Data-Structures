@@ -71,59 +71,101 @@ class DoublyLinkedList:
             return temp
         return None
 
+    # def add_to_tail(self, value):
+    #     # init a new node
+    #     new_node = ListNode(value)
+    #     # check to see if anything is in the list
+    #     if not self.tail:
+    #         # hey, we're in an empty linked list situation
+    #         self.tail = new_node
+    #         self.head = new_node
+    #     else:
+    #         # add new node after current tail
+    #         new_node.insert_after(value)
+    #         self.tail = new_node.next
+
     def add_to_tail(self, value):
-        # init a new node
-        new_node = ListNode(value)
-        # check to see if anything is in the list
-        if not self.tail:
-            # hey, we're in an empty linked list situation
+        current_tail = self.tail
+        if not self.head:
+            new_node = ListNode(value)
+            self.head = new_node
             self.tail = new_node
         else:
-            # add new node after current tail
-            self.tail.insert_after(new_node)
-            self.tail = new_node
+            current_tail.insert_after(value)
+            self.tail = current_tail.next
+            
 
     def remove_from_tail(self):
-        if self.tail:
-            new_tail = self.tail.prev
-            temp = self.tail.value
-            self.tail.delete()
-            self.tail = new_tail
-            if not self.tail:
-                return temp
-        return None
-
-    def move_to_front(self, node):
-        if self.head:
-            self.head.prev = node
-            node.next = self.head
-            self.head = node
+        if not self.tail:
+            return None
+        if self.head == self.tail:
+            tail = self.tail
+            self.head = None
+            self.tail = None
+            return tail.value
         else:
+            tail = self.tail
+            self.tail.delete()
+            self.tail = self.tail.prev
+            return tail.value
+        
+    def move_to_front(self, node):
+        if self.head is not node:
+            if node.next and node.prev:
+                node.delete()
+            current_head = self.head
             self.head = node
-            self.tail = node
+            node.next = current_head
+            current_head.prev = node
 
     def move_to_end(self, node):
-        if self.tail:
-            self.tail.next = node
-            node.prev = self.tail
+        if self.tail is not node:
+            if node.next and node.prev:
+                node.delete()
+            current_tail = self.tail
             self.tail = node
-        else:
-            self.head = node
-            self.tail = node
+            node.prev = current_tail
+            current_tail.next = node
 
     def delete(self, node):
-        node.delete()
+        #check if our list is completely emply
+        if not self.head and not self.tail:
+            return None        
+        # if our list has only a single node, then we delete it
+        # both self.head and self.tail should be None
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+
+        #check if given node is the head
+        if self.head == node:
+        # set the self== node.next
+        # delete the node
+            self.head = node.next
+            node.delete()
+
+        #check if the given node is the tail
+        if self.tail == node:
+        # set self.tail pointer to the previous node
+            self.tail = node.prev
+        # delete the node
+            node.delete()
+
+        # otherwise, the node we're looking to delete is in the middle of the list
+        else:
+            node.delete()
+
+
 
     def get_max(self):
-        print(self.head.value)
         if not self.head:
             return None
-        node = self.head
-        list_max = node.value
-        while node:
-            if node.value > list_max:
-                list_max = node.value
-            node = node.next
+        current_node = self.head
+        list_max = 0
+        while current_node:
+            if current_node.value > list_max:
+                list_max = current_node.value
+            current_node = current_node.next
         return list_max
 
         """ check if a head exists
