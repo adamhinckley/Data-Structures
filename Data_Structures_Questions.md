@@ -18,11 +18,11 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `insert`?
 
-    O(1) because it doesn't have to iterate over the value
+    O( log n) because it uses recursion and binary search is always log n
 
 2. What is the runtime complexity of `contains`?
 
-    O(1) because it doesn't have to iterate over the value
+    O( log n) because it uses recursion and binary search is always log n
 
 3. What is the runtime complexity of `get_max`?
 
@@ -32,20 +32,20 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `_bubble_up`?
 
-    O(n + 1) because it uses a while loop(n) then an if statement(1)
+    O(log n) because it uses a while loop(n) then an if statement(1)
 
 2. What is the runtime complexity of `_sift_down`?
 
-    O(n + 1) because it uses a while loop(n) then an if statement(1)
+    O(log n) because it uses a while loop(n) then an if statement(1)
 
 3. What is the runtime complexity of `insert`?
 
     inserting along is O(1) because there is no need to iterate over the value,
-    but calling `_bubble_up` makes it O(n + 2) because it uses a while loop.
+    but calling `_bubble_up` makes it O(log n + 1) because it uses a while loop.
 
 4. What is the runtime complexity of `delete`?
 
-    O(1) if it didn't use `_sift_down` but it's o(n + 2) because of that.
+    O(1) if it didn't use `_sift_down` but it's o(log n + 1) because of that.
 
 5. What is the runtime complexity of `get_max`?
 
@@ -95,7 +95,7 @@ Answer the following questions for each of the data structures you implemented a
 
     a. Compare the runtime of the doubly linked list's `delete` method with the worst-case runtime of the JS `Array.splice` method. Which method generally performs better?
 
-    `I think the JS method performs better only because it knows the exact index or indexes to work with when it's called and doesn't have to compare anything with`if`statements.`
+    `worst case of array.splice is O(n) it would have to copy all of the elements to a new array`
 
 <!-- I added this one because it was left out -->
 
