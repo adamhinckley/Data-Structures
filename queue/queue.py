@@ -3,7 +3,7 @@ class Queue:
         self.size = 0
         # what data structure should we
         # use to store queue elements?
-        self.storage = list()
+        self.storage = []
 
     def enqueue(self, item):
         # check to see if the item is in the queue

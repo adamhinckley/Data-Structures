@@ -10,17 +10,11 @@ class Heap:
         self._bubble_up(len(self.storage) - 1)
 
     def delete(self):
-
         last_item = self.storage.pop()
-
         if self.storage:
-
             deleted = self.storage[0]
-
             self.storage[0] = last_item
-
             self._sift_down(0)
-
             return deleted
         else:
             return last_item
