@@ -26,7 +26,7 @@ Answer the following questions for each of the data structures you implemented a
 
 3. What is the runtime complexity of `get_max`?
 
-    O(n) because it has to iterate to find the max
+    O(log n) because it has to iterate to find the max and uses recursion
 
 ## Heap
 
